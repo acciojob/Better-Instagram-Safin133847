@@ -1,4 +1,3 @@
-//your code here
 const images = document.querySelectorAll('.image');
 let draggedItem = null;
 
@@ -35,7 +34,6 @@ images.forEach(image => {
             const draggedIndex = Array.from(images).indexOf(draggedItem);
             const targetIndex = Array.from(images).indexOf(image);
 
-            // Swap the elements
             if (draggedIndex !== targetIndex) {
                 const parent = document.getElementById('parent');
                 const draggedClone = draggedItem.cloneNode(true);
@@ -44,9 +42,9 @@ images.forEach(image => {
                 parent.replaceChild(targetClone, draggedItem);
                 parent.replaceChild(draggedClone, image);
 
-                // Set the ids back to their original values
-                draggedClone.id = `div${targetIndex + 1}`;
-                targetClone.id = `div${draggedIndex + 1}`;
+               
+                draggedClone.id = `drag${targetIndex + 1}`;
+                targetClone.id = `drag${draggedIndex + 1}`;
             }
         }
     });
