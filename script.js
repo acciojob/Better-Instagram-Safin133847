@@ -1,51 +1,23 @@
-const images = document.querySelectorAll('.image');
-let draggedItem = null;
+function allowDrop(){
+        event.preventDefault();
+    }
+    function drag(event){
+        event.dataTransfer.setData("text/plain",event.target.src);
+    }
 
-images.forEach(image => {
-    image.addEventListener('dragstart', () => {
-        draggedItem = image;
-        setTimeout(() => {
-            image.style.display = 'none'; // Hide the dragged item
-        }, 0);
-    });
+    function drop(event){
+        event.preventDefault();
+        const imageSrc = event.dataTransfer.getData("text/plain");
+        const targetContainer = event.currentTarget;
 
-    image.addEventListener('dragend', () => {
-        setTimeout(() => {
-            draggedItem = null;
-            image.style.display = 'block'; // Show the item again
-        }, 0);
-    });
-
-    image.addEventListener('dragover', (event) => {
-        event.preventDefault(); // Allow dropping
-    });
-
-    image.addEventListener('dragenter', () => {
-        image.classList.add('selected'); // Highlight the target item
-    });
-
-    image.addEventListener('dragleave', () => {
-        image.classList.remove('selected'); // Remove highlight
-    });
-
-    image.addEventListener('drop', () => {
-        image.classList.remove('selected'); // Remove highlight
-        if (draggedItem) {
-            const draggedIndex = Array.from(images).indexOf(draggedItem);
-            const targetIndex = Array.from(images).indexOf(image);
-
-            if (draggedIndex !== targetIndex) {
-                const parent = document.getElementById('parent');
-                const draggedClone = draggedItem.cloneNode(true);
-                const targetClone = image.cloneNode(true);
-
-                parent.replaceChild(targetClone, draggedItem);
-                parent.replaceChild(draggedClone, image);
-
-               
-                draggedClone.id = `drag${targetIndex + 1}`;
-                targetClone.id = `drag${draggedIndex + 1}`;
-            }
+        while(targetContainer.firstChild){
+            targetContainer.removeChild(targetContainer.firstChild);
         }
-    });
-});
+        const newImage = document.createElement("img");
+        newImage.src = imageSrc;
+        newImage.className = "draggable";
+        newImage.draggable = true;
+        newImage.ondragstart = drag;
+
+        targetContainer.appendChild(newImage);
+    }

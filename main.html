@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="script.js" defer></script>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Better Instagram</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: lavenderblush;
+            flex-wrap: wrap;
+        }
+
+        .container{
+            width: 150px;
+            height: 150px;
+            border: 2px solid white;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .draggable{
+            cursor: move;
+            width: 100%;
+            height: auto;
+        }
+
+    </style>
 </head>
 <body>
-    <h1 style="text-align: center">Arrange Images by Drag and Drop</h1>
     <div class="flex" id="parent">
-        <div id="drag1" class="image" draggable="true">Image 1</div>
-        <div id="drag2" class="image" draggable="true">Image 2</div>
-        <div id="drag3" class="image" draggable="true">Image 3</div>
-        <div id="drag4" class="image" draggable="true">Image 4</div>
-        <div id="drag5" class="image" draggable="true">Image 5</div>
-        <div id="drag6" class="image" draggable="true">Image 6</div>
+        <div draggable="true" class="container"  ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" draggable="true" class="draggable" ondragstart="drag(event)">
+      </div>
+      <div draggable="true" class="container"  ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-C_UAhXq9GfuGO452EEzfbKnh1viQB9EDBQ&s" draggable="true" class="draggable" ondragstart="drag(event)">
+      </div>
+      <div draggable="true" class="container"  ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBD_rOB19y9Uq-TdyNSfoZB8pTdFY5csJF5A&s" draggable="true" class="draggable" ondragstart="drag(event)">
+      </div>
+      <div draggable="true" class="container"  ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" draggable="true" class="draggable" ondragstart="drag(event)">
+      </div>
+      <div draggable="true" class="container"  ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img src="https://img.freepik.com/free-photo/abstract-autumn-beauty-multi-colored-leaf-vein-pattern-generated-by-ai_188544-9871.jpg" draggable="true" class="draggable" ondragstart="drag(event)">
+      </div>
+      <div draggable="true" class="container"  ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBD_rOB19y9Uq-TdyNSfoZB8pTdFY5csJF5A&s" draggable="true" class="draggable" ondragstart="drag(event)">
+      </div>
     </div>
 </body>
 </html>
