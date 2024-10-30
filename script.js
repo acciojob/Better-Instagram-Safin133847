@@ -1,23 +1,20 @@
-function allowDrop(){
+let draggedImage = null;
+    function allowDrop(event){
         event.preventDefault();
     }
     function drag(event){
-        event.dataTransfer.setData("text/plain",event.target.src);
+        draggedImage = event.target;
     }
 
     function drop(event){
         event.preventDefault();
-        const imageSrc = event.dataTransfer.getData("text/plain");
         const targetContainer = event.currentTarget;
 
-        while(targetContainer.firstChild){
-            targetContainer.removeChild(targetContainer.firstChild);
-        }
-        const newImage = document.createElement("img");
-        newImage.src = imageSrc;
-        newImage.className = "draggable";
-        newImage.draggable = true;
-        newImage.ondragstart = drag;
+       if(targetContainer !== draggedImage.parentElement){
+        const targetImage = targetContainer.querySelector('img');
 
-        targetContainer.appendChild(newImage);
+        const tempSrc = targetImage.src;
+        targetImage.src = draggedImage.src;
+        draggedImage.src = tempSrc;
+       }
     }
